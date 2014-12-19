@@ -1,0 +1,35 @@
+#makefile for the multithread stress test program
+
+#compiler
+CC = gcc 
+
+#name of final output
+EXECUTABLE = 
+
+#list of source files
+MAIN = $(EXECUTABLE).c
+FUNCTIONS = .c 
+HEADERS = .h
+SOURCES = $(MAIN) $(HEADERS) $(FUNCTIONS) 
+OBJECTS = $(FUNCTIONS:.c=.o)
+
+#multithreading tag
+LDFLAGS = 
+
+#list of files to be removed when cleaning 
+SCRUB_LIST = $(MAIN:.c=.o) $(OBJECTS) $(EXECUTABLE)
+
+#begin build 
+all: $(EXECUTABLE) $(SOURCES)
+
+$(EXECUTABLE): $(OBJECTS) $(MAIN:.c=.o) 
+	$(CC) $(LDFLAGS) $^ -o $@
+
+$(MAIN:.c=.o): $(OBJECTS) $(HEADERS) 
+	$(CC) $(LDFLAGS) -c $(MAIN)
+
+$(OBJECTS): $(FUNCTIONS)
+	$(CC) $(LDFLAGS) -c $(FUNCTIONS)
+
+clean:
+	rm $(SCRUB_LIST)
