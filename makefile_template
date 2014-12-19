@@ -13,7 +13,7 @@ HEADERS = .h
 SOURCES = $(MAIN) $(HEADERS) $(FUNCTIONS) 
 OBJECTS = $(FUNCTIONS:.c=.o)
 
-#multithreading tag
+#ld flags (multi-threading, etc) tag
 LDFLAGS = 
 
 #list of files to be removed when cleaning 
